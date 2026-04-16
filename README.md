@@ -1,22 +1,27 @@
-# Project Name: Shopify eCommerce Data Extractor
+Data Acquisition & Web Scraping Project
 
-### 1. Project Overview
-* **Target Website:** [(https://www.allbirds.com/products.json)]
-* **Data Fields Extracted:** Product Title, Price, Product Type
-* **Tools Used:** Python, Requests, JSON, Pandas
+Project Overview
+Target Website: Books to Scrape
 
-### 2. Project Structure
-* `web.py`: The main Python script utilizing the Shopify JSON API for extraction.
-* `data3.csv`: The final dataset containing the exported product information.
-* `requirements.txt`: List of necessary Python libraries.
-* `README.md`: Project documentation.
+Dataset: 20+ records of product metadata (Titles, Prices, Availability).
 
-### 3. Setup Instructions
-1. Clone this repo: `git clone https://github.com/amna-rkhan/Web-Scraping-assignment.git`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run script: `python web.py`
+Output: data2.csv (Ready for exploratory data analysis).
 
-### 4. Challenges & Solutions
-* **Technical Hurdle:** Traditional HTML scraping using BeautifulSoup can be fragile if the website theme changes or uses heavy JavaScript (like Wix or Shopify).
-* **The Solution:** I pivoted to using Shopify's native JSON endpoint (`/products.json`). This allowed for more reliable data extraction, bypassed the need for complex CSS selectors, and ensured 100% data accuracy in the final CSV.
-* **Ethical Scraping:** I implemented a `time.sleep(1)` delay in the extraction loop to ensure the script respects the server's rate limits.
+Data Engineering Pipeline
+To ensure a high-quality dataset, the following scraping pipeline was implemented:
+
+Library Stack: BeautifulSoup4 for HTML parsing and Requests for HTTP communication.
+
+Extraction Logic: Utilized BeautifulSoup’s CSS selectors to navigate the DOM tree and extract nested attributes within article tags.
+
+Data Transformation: Leveraged Pandas to clean raw strings (removing whitespace and non-numeric characters) and structure them into a tabular format.
+
+Technical Challenges & Robustness
+In Data Science, data reliability is paramount. This project involved significant troubleshooting:
+
+Handling Dynamic Content: I initially tested high-volume platforms like Daraz and Dribbble. However, I identified that these sites use Client-Side Rendering (JavaScript), which led to incomplete datasets when using static scrapers.
+
+The Solution: I pivoted to Books to Scrape, a server-side rendered site. This decision was made to ensure 100% data extraction success and to demonstrate a stable, reproducible data pipeline.
+
+Ethical Data Collection: To prevent server-side rate-limiting and practice ethical data acquisition, a 1-second latency (time.sleep) was added between requests.
+
