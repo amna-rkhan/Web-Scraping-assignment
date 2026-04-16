@@ -1,27 +1,26 @@
-Data Acquisition & Web Scraping Project
+Data Acquisition Project
+Overview
+This project automates the collection of e-commerce data using BeautifulSoup. The goal was to build a reliable data pipeline to extract product information for future analysis.
 
-Project Overview
-Target Website: Books to Scrape
+Target: Books to Scrape
 
-Dataset: 20+ records of product metadata (Titles, Prices, Availability).
+Output: data2.csv
 
-Output: data2.csv (Ready for exploratory data analysis).
+Technical Stack
+BeautifulSoup4: For HTML parsing and tag extraction.
 
-Data Engineering Pipeline
-To ensure a high-quality dataset, the following scraping pipeline was implemented:
+Requests: For handling HTTP connections.
 
-Library Stack: BeautifulSoup4 for HTML parsing and Requests for HTTP communication.
+Pandas: For structuring data into a CSV format.
 
-Extraction Logic: Utilized BeautifulSoup’s CSS selectors to navigate the DOM tree and extract nested attributes within article tags.
+Execution Logic
+Request: Fetch the HTML source of the target webpage.
 
-Data Transformation: Leveraged Pandas to clean raw strings (removing whitespace and non-numeric characters) and structure them into a tabular format.
+Parse: Locate product containers using the <article> tag and product_pod class.
 
-Technical Challenges & Robustness
-In Data Science, data reliability is paramount. This project involved significant troubleshooting:
+Extract: Capture the Title and Price for each item.
 
-Handling Dynamic Content: I initially tested high-volume platforms like Daraz and Dribbble. However, I identified that these sites use Client-Side Rendering (JavaScript), which led to incomplete datasets when using static scrapers.
+Save: Export the gathered list into a structured DataFrame and save as data2.csv.
 
-The Solution: I pivoted to Books to Scrape, a server-side rendered site. This decision was made to ensure 100% data extraction success and to demonstrate a stable, reproducible data pipeline.
-
-Ethical Data Collection: To prevent server-side rate-limiting and practice ethical data acquisition, a 1-second latency (time.sleep) was added between requests.
-
+Challenges Faced
+Initial attempts to scrape JavaScript-heavy sites (like Daraz) resulted in empty datasets. I successfully pivoted to a server-side rendered site to ensure 100% data integrity and a stable pipeline for this assignment.
